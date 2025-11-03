@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "https://pourlestoutpetits.fr/(.*)", "destination": "https://www.pourlestoutpetits.fr/$1", "permanent": false },
+    { "source": "http://pourlestoutpetits.fr/(.*)", "destination": "https://www.pourlestoutpetits.fr/$1", "permanent": false }
+  ]
+}
