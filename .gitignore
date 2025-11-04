@@ -6,3 +6,19 @@
 coverage
 dist
 .prisma
+# Env files
+.env
+.env.*
+*.env
+*.env.*
+*.bak
+
+
+# Env files
+.env
+.env.*
+*.env
+*.env.*
+*.bak
+
+.vercel
