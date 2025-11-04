@@ -1,46 +1,39 @@
-﻿import JsonLd from "./JsonLd";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Pour les tout petits – Jeux, éveil et activités pour enfants",
-  description: "Pour les tout petits : marketplace ludique et éducative pour découvrir, vendre ou acheter des produits d’éveil, jeux et accessoires pour enfants.",
-  openGraph: {
-    title: "Pour les tout petits",
-    description: "Marketplace ludique et éducative pour enfants – jeux, éveil et accessoires.",
-    url: "https://www.pourlestoutpetits.fr",
-    siteName: "Pour les tout petits",
-    images: [
-      {
-        url: "https://www.pourlestoutpetits.fr/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Pour les tout petits – Jeux et éveil"
-      }
-    ],
-    locale: "fr_FR",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pour les tout petits",
-    description: "Marketplace ludique et éducative pour enfants.",
-    images: ["https://www.pourlestoutpetits.fr/og-image.jpg"],
-  },
-};
-
-export const dynamic = 'force-dynamic';
+﻿import Link from "next/link";
 
 export default function Home() {
   return (
-    <main style={{padding:20,fontFamily:'system-ui, sans-serif'}}>
-      <h1>Pour les Tout Petits</h1>
-      <p>Accueil en ligne ✅</p>
-      <ul>
-        <li><a href="/sell">Vendre</a></li>
-        <li><a href="/premium">Premium</a></li>
-        <li><a href="/signin">Se connecter</a></li>
-      </ul>
-    <JsonLd />
-	</main>
+    <div className="space-y-16" data-marker="home-v2">
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-50 via-white to-emerald-50 p-8 sm:p-12">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+          Bienvenue sur <span className="text-emerald-600">PourLesToutPetits</span>
+        </h1>
+        <p className="mt-4 text-gray-600">
+          Achetez et vendez des affaires d’enfants — simple, rapide, sécurisé.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="/sell" className="inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition bg-emerald-600 hover:bg-emerald-700">
+            Vendre un article
+          </Link>
+          <Link href="/premium" className="inline-flex items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-100">
+            Découvrir Premium
+          </Link>
+        </div>
+      </section>
+
+      <section className="space-y-6">
+        <h2 className="text-xl font-semibold">Catégories</h2>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {["Vêtements", "Puériculture", "Jouets & Jeux"].map((c) => (
+            <Link key={c} href="/" className="group rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+              <div className="flex items-center justify-between">
+                <div className="text-base font-semibold">{c}</div>
+                <span className="text-emerald-600">→</span>
+              </div>
+              <p className="mt-1 text-sm text-gray-600">Parcourir {c.toLowerCase()}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
