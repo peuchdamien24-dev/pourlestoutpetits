@@ -1,4 +1,5 @@
-﻿Set-Content -NoNewline -Path "app/sitemap.ts" -Value @'
+﻿export const revalidate = 3600; // revalidate every 1 hour
+Set-Content -NoNewline -Path "app/sitemap.ts" -Value @'
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
