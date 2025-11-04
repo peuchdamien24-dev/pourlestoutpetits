@@ -1,9 +1,12 @@
-﻿export const revalidate = 3600; // revalidate every 1 hour
-Set-Content -NoNewline -Path "app/sitemap.ts" -Value @'
+﻿// Revalider toutes les 1h
+export const revalidate = 3600;
+
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.pourlestoutpetits.fr";
+  const base =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.pourlestoutpetits.fr";
+
   return [
     { url: `${base}/`, changeFrequency: "daily", priority: 1.0 },
     { url: `${base}/premium`, changeFrequency: "weekly", priority: 0.7 },
@@ -12,4 +15,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/signup`, changeFrequency: "monthly", priority: 0.3 },
   ];
 }
-'@ -Encoding UTF8

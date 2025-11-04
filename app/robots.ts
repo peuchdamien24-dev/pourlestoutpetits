@@ -1,12 +1,14 @@
-﻿export const revalidate = 3600; // revalidate every 1 hour
-Set-Content -NoNewline -Path "app/robots.ts" -Value @'
+﻿// Revalider toutes les 1h
+export const revalidate = 3600;
+
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.pourlestoutpetits.fr";
+  const base =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.pourlestoutpetits.fr";
+
   return {
     rules: [{ userAgent: "*", allow: "/" }],
     sitemap: `${base}/sitemap.xml`,
   };
 }
-'@ -Encoding UTF8
