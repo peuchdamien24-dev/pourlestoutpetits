@@ -1,43 +1,34 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import React from "react";
+﻿import "./globals.css";
 import Link from "next/link";
-import AuthSessionProvider from "@/providers/SessionProvider";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import Providers from "./providers";
 
-export const metadata: Metadata = {
-  title: "VintedLike",
-  description: "Marketplace avec Stripe + Auth",
+export const metadata = {
+  title: "PourLesToutPetits",
+  description: "Marketplace enfants — achat/vente sécurisés",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
-      <body>
-        <header
-          style={{
-            padding: "12px 16px",
-            borderBottom: "1px solid #eee",
-            display: "flex",
-            gap: 12,
-          }}
-        >
-          <Link href="/" style={{ fontWeight: 700, color: "black" }}>
-            VintedLike
-          </Link>
-          <nav style={{ marginLeft: "auto", display: "flex", gap: 12 }}>
-            <Link href="/sell">Vendre</Link>
-            <Link href="/premium">Premium</Link>
-            <Link href="/signin">Se connecter</Link>
-          </nav>
+      <body className="bg-gray-50 text-gray-900">
+        <header className="sticky top-0 z-20 border-b bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+          <div className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-6">
+            <Link href="/" className="font-bold">PourLesToutPetits</Link>
+            <nav className="ml-auto flex items-center gap-4 text-sm">
+              <Link href="/sell" className="hover:text-emerald-700">Vendre</Link>
+              <Link href="/premium" className="hover:text-emerald-700">Premium</Link>
+              <Link href="/signin" className="hover:text-emerald-700">Se connecter</Link>
+            </nav>
+          </div>
         </header>
-
-        <AuthSessionProvider>{children}</AuthSessionProvider>
-
-        {/* Observabilité Vercel */}
-        <Analytics />
-        <SpeedInsights />
+        <main className="mx-auto max-w-6xl px-4 py-8">
+          <Providers>{children}</Providers>
+        </main>
+        <footer className="mt-16 border-t bg-white">
+          <div className="mx-auto max-w-6xl px-4 py-6 text-sm text-gray-500">
+            © {new Date().getFullYear()} PourLesToutPetits
+          </div>
+        </footer>
       </body>
     </html>
   );

@@ -147,3 +147,4 @@ export default function SellPage() {
     </div>
   );
 }
+export const dynamic = "force-dynamic";
