@@ -1,25 +1,34 @@
+import "./globals.css";
 import React from "react";
-import AuthSessionProvider from "./providers/SessionProvider";
-import AuthButtons from "@/components/AuthButtons";
+import Link from "next/link";
+import AuthSessionProvider from "@/providers/SessionProvider";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata = {
+  title: "Pour les Tout Petits",
+  description: "Marketplace avec abonnement Stripe",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="fr">
-      <body style={{ fontFamily: "system-ui, sans-serif", margin: 0 }}>
+      <body className="min-h-screen bg-white text-slate-900">
         <AuthSessionProvider>
-          <header style={{ padding: "12px 16px", borderBottom: "1px solid #eee", display: "flex", gap: 12, alignItems: "center" }}>
-            <a href="/" style={{ fontWeight: 700, textDecoration: "none", color: "black" }}>VintedLike</a>
-            <nav style={{ marginLeft: "auto", display: "flex", gap: 16, alignItems: "center" }}>
-              <a href="/sell">Vendre</a>
-              <a href="/premium">Premium</a>
-              <AuthButtons />
+          <header className="flex items-center gap-4 border-b px-4 py-2">
+            <Link href="/" className="font-bold">VintedLike</Link>
+            <nav className="ml-auto flex gap-4">
+              <Link href="/sell">Vendre</Link>
+              <Link href="/premium">Premium</Link>
+              <Link href="/signin">Se connecter</Link>
             </nav>
           </header>
-          <main style={{ maxWidth: 960, margin: "20px auto", padding: "0 16px" }}>
-            {children}
-          </main>
+
+          <main className="p-6">{children}</main>
         </AuthSessionProvider>
       </body>
     </html>
   );
-}import './globals.css'
+}
